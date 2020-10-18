@@ -7,7 +7,8 @@ const app = express();
 // app.use(express.json());
 
 // routers
-const userRoutes = require('./routes/user.route');
+const userRoutes = require('./routes/auth.route');
+const adminRoutes = require('./routes/admin/admin.route');
 
 env.config();
 // mongo connect
@@ -28,6 +29,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/api', userRoutes)
+
+app.use('/api/admin', adminRoutes);
 
 app.get('/',(req, res, next)=>{
     res.status(200).json({

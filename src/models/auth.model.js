@@ -9,6 +9,13 @@ const userSchema = new mongoose.Schema({
         min: 3,
         max: 20
     },
+    lastName: {
+        type: String,
+        required: true,
+        trim: true,
+        min: 3,
+        max: 20
+    },
     userName: {
         type: String,
         required: true,
@@ -32,7 +39,7 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         enum: ['user', 'admin'],
-        default: 'admin'
+        default: 'user'
     },
     contactNumber: {type: String},
     profilePicture: {type: String}
@@ -43,7 +50,12 @@ userSchema.virtual('password')
         this.hash_password= bcrypt.hashSync(password, 10);
     });
 
-userSchema.method = {
+userSchema.virtual('fullName')
+    .get(function(){
+        return `${this.firstName} ${this.lastName}`
+    });
+
+userSchema.methods = {
     authenticate: function(password){
         return bcrypt.compareSync(password, this.hash_password)
     }
