@@ -1,10 +1,15 @@
-const express = require('express');
-const { signin, signup } = require('../../controller/admin/admin.controller');
+const express = require("express");
+const { signin, signup } = require("../../controller/admin/admin.controller");
+const {
+  validateSignInRequest,
+  isRequestValidated,
+  validateSignUpRequest,
+} = require("../../validator/auth.validator");
 const router = express.Router();
 
-router.post('/signin', signin);
+router.post("/signin", validateSignInRequest, isRequestValidated, signin);
 
-router.post('/signup', signup);
+router.post("/signup", validateSignUpRequest, isRequestValidated, signup);
 
 // router.post('/profile',requiresignin, (req, res)=>{
 //     res.status(200).json({user: 'profile'})
