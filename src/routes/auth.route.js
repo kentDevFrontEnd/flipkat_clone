@@ -1,9 +1,6 @@
 const express = require("express");
-const {
-  signup,
-  signin,
-  requiresignin,
-} = require("../controller/auth.controller");
+const { requiresignin } = require("../common.middleware");
+const { signup, signin } = require("../controller/auth.controller");
 const {
   validateSignUpRequest,
   validateSignInRequest,

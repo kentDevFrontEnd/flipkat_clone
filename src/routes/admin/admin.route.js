@@ -1,4 +1,5 @@
 const express = require("express");
+const { requiresignin } = require("../../common.middleware");
 const { signin, signup } = require("../../controller/admin/admin.controller");
 const {
   validateSignInRequest,
@@ -11,8 +12,8 @@ router.post("/signin", validateSignInRequest, isRequestValidated, signin);
 
 router.post("/signup", validateSignUpRequest, isRequestValidated, signup);
 
-// router.post('/profile',requiresignin, (req, res)=>{
-//     res.status(200).json({user: 'profile'})
-// });
+router.post("/profile", requiresignin, (req, res) => {
+  res.status(200).json({ user: "profile" });
+});
 
 module.exports = router;
