@@ -17,6 +17,8 @@
     "express-validator": "^6.6.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.9",
+    "multer": "^1.4.2",
+    "short-id": "0.1.0-1",
     "slugify": "^1.4.5"
   }
 }

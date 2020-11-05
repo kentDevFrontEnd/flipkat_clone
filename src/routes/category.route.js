@@ -7,8 +7,8 @@ const {
 
 const router = express.Router();
 
-router.post("/category/create", requiresignin, adminMiddleware, addCategory);
+router.post("/create", requiresignin, adminMiddleware, addCategory);
 
-router.get("/category/getcategories", getCategories);
+router.get("/getcategories", getCategories);
 
 module.exports = router;

@@ -10,6 +10,7 @@ const app = express();
 const userRoutes = require("./routes/auth.route");
 const adminRoutes = require("./routes/admin/admin.route");
 const categoryRoutes = require("./routes/category.route");
+const productRoutes = require("./routes/products.router");
 
 env.config();
 // mongo connect
@@ -34,7 +35,9 @@ app.use("/api", userRoutes);
 
 app.use("/api/admin", adminRoutes);
 
-app.use("/api", categoryRoutes);
+app.use("/api/category", categoryRoutes);
+
+app.use("/api/product", productRoutes);
 
 app.get("/", (req, res, next) => {
   res.status(200).json({
