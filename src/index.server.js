@@ -11,6 +11,7 @@ const userRoutes = require("./routes/auth.route");
 const adminRoutes = require("./routes/admin/admin.route");
 const categoryRoutes = require("./routes/category.route");
 const productRoutes = require("./routes/products.router");
+const cartRoutes = require("./routes/cart.route");
 
 env.config();
 // mongo connect
@@ -22,6 +23,7 @@ mongoose
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
+      useFindAndModify: false,
     }
   )
   .then(() => {
@@ -38,6 +40,8 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/category", categoryRoutes);
 
 app.use("/api/product", productRoutes);
+
+app.use("/api/user", cartRoutes);
 
 app.get("/", (req, res, next) => {
   res.status(200).json({
