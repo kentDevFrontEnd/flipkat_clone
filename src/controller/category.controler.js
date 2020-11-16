@@ -3,7 +3,6 @@ const Category = require("../models/category.model");
 
 const createCategories = (categories, parentId = null) => {
   const cateList = [];
-  let category;
 
   if (parentId == null) {
     category = categories.filter((cate) => cate.parentId == undefined);
@@ -26,10 +25,18 @@ const createCategories = (categories, parentId = null) => {
 };
 
 module.exports.addCategory = (req, res) => {
+  // TODO why dont use form-body to set data
+  let category;
+
   const categoryObj = {
     name: req.body.name,
     slug: slugify(req.body.name),
   };
+
+  if (req.file) {
+    categoryObj.categoryImage =
+      process.env.API + "/public/" + req.file.filename;
+  }
 
   if (req.body.parentId) {
     // for child category, no need for parent category

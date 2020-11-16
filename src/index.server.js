@@ -2,6 +2,7 @@ const express = require("express");
 const env = require("dotenv");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const app = express();
 // app.use(express.json());
@@ -30,9 +31,10 @@ mongoose
     console.log("database connected");
   });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // no need bodyParser
 
+app.use("/public", express.static(`${__dirname}/upload`)); // map "/public" to "upload" folder
 app.use("/api", userRoutes);
 
 app.use("/api/admin", adminRoutes);
