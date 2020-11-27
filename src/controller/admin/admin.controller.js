@@ -29,7 +29,7 @@ module.exports.signup = (req, res) => {
 
       if (data) {
         return res.status(201).json({
-          user: data,
+          message: "You create success ",
         });
       }
     });
@@ -48,6 +48,10 @@ module.exports.signin = (req, res) => {
             expiresIn: "1h",
           }
         );
+
+        // save server cookie: token
+        res.cookie("token", token, { expiresIn: "1h" });
+
         const { firstName, lastName, email, role, fullName } = user;
         res.status(200).json({
           token,
@@ -69,5 +73,14 @@ module.exports.signin = (req, res) => {
         message: "Something went wrong",
       });
     }
+  });
+};
+
+module.exports.signout = (req, res) => {
+  console.log(req.user);
+
+  res.clearCookie("token");
+  res.status(200).json({
+    messgae: "Sign out success",
   });
 };

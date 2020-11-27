@@ -3,6 +3,8 @@ const env = require("dotenv");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 const app = express();
 // app.use(express.json());
@@ -31,8 +33,10 @@ mongoose
     console.log("database connected");
   });
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // no need bodyParser
+app.use(cookieParser());
 
 app.use("/public", express.static(`${__dirname}/upload`)); // map "/public" to "upload" folder
 app.use("/api", userRoutes);
