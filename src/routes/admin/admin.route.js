@@ -16,7 +16,7 @@ router.post("/signin", validateSignInRequest, isRequestValidated, signin);
 
 router.post("/signup", validateSignUpRequest, isRequestValidated, signup);
 
-router.post("/signout", requiresignin, signout);
+router.post("/signout", signout);
 
 router.post("/profile", requiresignin, (req, res) => {
   res.status(200).json({ user: "profile" });

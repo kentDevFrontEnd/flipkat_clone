@@ -81,6 +81,6 @@ module.exports.signout = (req, res) => {
 
   res.clearCookie("token");
   res.status(200).json({
-    messgae: "Sign out success",
+    message: "Sign out success",
   });
 };
