@@ -15,6 +15,7 @@ const adminRoutes = require("./routes/admin/admin.route");
 const categoryRoutes = require("./routes/category.route");
 const productRoutes = require("./routes/products.router");
 const cartRoutes = require("./routes/cart.route");
+const initialDataRoutes = require("./routes/admin/initialData");
 
 env.config();
 // mongo connect
@@ -42,6 +43,8 @@ app.use("/public", express.static(`${__dirname}/upload`)); // map "/public" to "
 app.use("/api", userRoutes);
 
 app.use("/api/admin", adminRoutes);
+
+app.use("/api/admin", initialDataRoutes);
 
 app.use("/api/category", categoryRoutes);
 

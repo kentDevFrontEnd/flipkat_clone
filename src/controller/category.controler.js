@@ -16,6 +16,7 @@ const createCategories = (categories, parentId = null) => {
     cateList.push({
       _id: cate._id,
       name: cate.name,
+      parentId: cate.parentId, // add parent id
       slug: cate.slug,
       children: createCategories(categories, cate._id),
     });
